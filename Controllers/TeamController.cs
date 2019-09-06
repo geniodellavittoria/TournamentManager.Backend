@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TournamentManager.Backend.Models;
 using TournamentManager.Backend.Services;
 
 namespace TournamentManager.Backend.Controllers
 {
+    [Produces("application/json")]
     [Route("api/teams")]
     public class TeamsController : Controller
     {
@@ -17,9 +19,9 @@ namespace TournamentManager.Backend.Controllers
 
         // GET api/teams
         [HttpGet]
-        public ActionResult<IEnumerable<Team>> GetTeams()
+        public async Task<IEnumerable<Team>> GetTeamsAsync()
         {
-            return _teamService.Get();
+            return await _teamService.Get();
         }
 
         // GET api/teams/5
@@ -31,14 +33,15 @@ namespace TournamentManager.Backend.Controllers
             {
                 return NotFound();
             }
-            return team;
+            return Ok(team);
         }
+
 
         // POST api/teams
         [HttpPost]
-        public CreatedAtActionResult AddTeam(Team team)
+        public async Task<CreatedAtActionResult> AddTeamAsync(Team team)
         {
-            _teamService.Create(team);
+            await _teamService.Create(team);
             return CreatedAtAction(nameof(GetTeam), new
             {
                 id = team.Id

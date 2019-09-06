@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using TournamentManager.Backend.Models;
 
 namespace TournamentManager.Backend.Services
@@ -17,26 +17,26 @@ namespace TournamentManager.Backend.Services
             _teams = database.GetCollection<Team>(settings.TeamsCollectionName);
         }
 
-        public List<Team> Get() =>
-            _teams.Find(team => true).ToList();
+        public async Task<List<Team>> Get() =>
+            await _teams.Find(team => true).ToListAsync();
 
-        public Team Get(int id) =>
-            _teams.Find<Team>(team => team.Id == id).FirstOrDefault();
+        public async Task<Team> Get(int id) =>
+            await _teams.Find<Team>(team => team.Id == id).FirstOrDefaultAsync();
 
-        public Team Create(Team team)
+        public async Task<Team> Create(Team team)
         {
-            _teams.InsertOne(team);
+            await _teams.InsertOneAsync(team);
             return team;
         }
 
         public void Update(int id, Team teamIn) =>
-            _teams.ReplaceOne(team => team.Id == id, teamIn);
+            _teams.ReplaceOneAsync(team => team.Id == id, teamIn);
 
         public void Remove(Team teamIn) =>
-            _teams.DeleteOne(team => team.Id == teamIn.Id);
+            _teams.DeleteOneAsync(team => team.Id == teamIn.Id);
 
         public void Remove(int id) =>
-            _teams.DeleteOne(team => team.Id == id);
+            _teams.DeleteOneAsync(team => team.Id == id);
     }
 }
 
