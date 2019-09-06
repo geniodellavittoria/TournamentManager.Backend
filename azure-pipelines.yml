@@ -36,17 +36,10 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
-- task: PublishBuildArtifacts@1
+- task: AzureWebApp@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Free Trial(06556cbe-fc45-4f5f-876d-7ea63411a03a)'
+    azureSubscription: 'Free Trial(1)(06556cbe-fc45-4f5f-876d-7ea63411a03a)'
     appType: 'webApp'
-    WebAppName: 'tournament-manager-backend'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    appName: 'tournament-manager-backend'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
