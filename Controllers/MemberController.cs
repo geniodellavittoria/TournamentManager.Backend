@@ -6,6 +6,7 @@ using TournamentManager.Backend.Services;
 
 namespace TournamentManager.Backend.Controllers
 {
+    [Produces("application/json")]
     [Route("api/members")]
     public class MemberController : Controller
     {
