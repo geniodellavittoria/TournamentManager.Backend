@@ -1,18 +1,16 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
 namespace TournamentManager.Backend.Models
 {
     public class Team
     {
-        [Required]
-
+        [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty("Name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("IsPaid")]
+        [JsonProperty("isPaid")]
         public bool IsPaid { get; set; }
     }
 }

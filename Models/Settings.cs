@@ -5,10 +5,10 @@ namespace TournamentManager.Backend.Models
     public class Settings
     {
         public int Id { get; set; }
-        [JsonProperty("TeamSize")]
+        [JsonProperty("teamSize")]
         public int TeamSize { get; set; }
 
-        [JsonProperty("GroupSize")]
+        [JsonProperty("groupSize")]
         public int GroupSize { get; set; }
     }
 }

@@ -36,6 +36,15 @@ namespace TournamentManager.Backend
                 .AddJsonOptions(options => options.UseMemberCasing())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // Enable CORS for 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -57,6 +66,7 @@ namespace TournamentManager.Backend
                 app.UseHsts();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
 

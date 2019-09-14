@@ -22,7 +22,7 @@ namespace TournamentManager.Backend.Services
 
         public async Task<Member> Get(int id) => await _members.Find(member => member.Id == id).FirstOrDefaultAsync();
 
-        public async Task<ICollection<Member>> GetMembersOfaTeam(int teamId) =>
+        public async Task<List<Member>> GetMembersOfTeam(int teamId) =>
             await _members.Find(member => member.TeamId == teamId).ToListAsync();
 
         public Member Create(Member member)

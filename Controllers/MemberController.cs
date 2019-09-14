@@ -40,7 +40,7 @@ namespace TournamentManager.Backend.Controllers
         [HttpGet("team/{teamId}")]
         public async Task<ActionResult<IEnumerable<Member>>> GetMemberOfaTeamAsync(int teamId)
         {
-            var members = await _memberService.GetMembersOfaTeam(teamId);
+            var members = await _memberService.GetMembersOfTeam(teamId);
             if (members == null)
             {
                 return NotFound();
