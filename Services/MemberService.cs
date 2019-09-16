@@ -34,9 +34,6 @@ namespace TournamentManager.Backend.Services
         public void Update(int id, Member memberIn) =>
             _members.ReplaceOneAsync(member => member.Id == id, memberIn);
 
-        public void Remove(Member memberIn) =>
-            _members.DeleteOneAsync(member => member.Id == memberIn.Id);
-
         public void Remove(int id) =>
             _members.DeleteOneAsync(member => member.Id == id);
     }

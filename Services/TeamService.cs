@@ -23,6 +23,9 @@ namespace TournamentManager.Backend.Services
         public async Task<Team> Get(int id) =>
             await _teams.Find<Team>(team => team.Id == id).FirstOrDefaultAsync();
 
+        public async Task<List<Team>> GetTeamsOfGroup(int groupId) =>
+            await _teams.Find(team => team.GroupId == groupId).ToListAsync();
+
         public async Task<Team> Create(Team team)
         {
             await _teams.InsertOneAsync(team);

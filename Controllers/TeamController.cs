@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TournamentManager.Backend.Controllers.Team;
 using TournamentManager.Backend.Models;
 using TournamentManager.Backend.Services;
 
@@ -64,6 +63,35 @@ namespace TournamentManager.Backend.Controllers
                 Name = team.Name,
                 Members = members
             });
+        }
+
+        // GET api/teams/group/{id}
+        [HttpGet("group/{id}")]
+        public async Task<ActionResult<List<TeamDto>>> GetTeamsOfGroup(int groupId)
+        {
+            List<Team> teams = null;
+            List<Member> members = null;
+
+            teams = await _teamService.GetTeamsOfGroup(groupId);
+            members = await _memberService.Get();
+
+            if (teams == null)
+            {
+                return NotFound();
+            }
+
+            teams.ForEach(team => new TeamDto
+            {
+                Id = team.Id,
+                IsPaid = team.IsPaid,
+                Name = team.Name,
+                Members = members.FindAll(member => member.TeamId == team.Id)
+            });
+
+            return Ok(teams);
+
+
+
         }
 
 

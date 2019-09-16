@@ -4,6 +4,8 @@
     {
         public string TeamsCollectionName { get; set; }
         public string MembersCollectionName { get; set; }
+        public string GroupsCollectionName { get; set; }
+        public string GamesCollectionName { get; set; }
         public string SettingsCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
@@ -13,6 +15,8 @@
     {
         string TeamsCollectionName { get; set; }
         string MembersCollectionName { get; set; }
+        string GroupsCollectionName { get; set; }
+        string GamesCollectionName { get; set; }
         string SettingsCollectionName { get; set; }
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }

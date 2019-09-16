@@ -12,5 +12,8 @@ namespace TournamentManager.Backend.Models
 
         [JsonProperty("isPaid")]
         public bool IsPaid { get; set; }
+
+        [JsonProperty("groupId")]
+        public int GroupId { get; set; }
     }
 }

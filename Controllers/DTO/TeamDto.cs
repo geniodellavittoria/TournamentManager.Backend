@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TournamentManager.Backend.Models;
 
-namespace TournamentManager.Backend.Controllers.Team
+namespace TournamentManager.Backend.Controllers
 {
     public class TeamDto
     {
