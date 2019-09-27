@@ -11,10 +11,10 @@ namespace TournamentManager.Backend.Models
         public long GameNumber { get; set; }
 
         [JsonProperty("homeTeamId")]
-        public int HomeTeamId { get; set; }
+        public string HomeTeamId { get; set; }
 
         [JsonProperty("awayTeamId")]
-        public int AwayTeamId { get; set; }
+        public string AwayTeamId { get; set; }
 
         [JsonProperty("homeTeamScore")]
         public int HomeTeamScore { get; set; }

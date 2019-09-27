@@ -1,15 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using TournamentManager.Backend.Models;
 
 namespace TournamentManager.Backend.Controllers
 {
     public class TeamDto
     {
-        [Required]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -19,6 +21,9 @@ namespace TournamentManager.Backend.Controllers
 
         [JsonProperty("members")]
         public List<Member> Members { get; set; }
+
+        [JsonProperty("group")]
+        public Group Group { get; set; }
     }
 }
 

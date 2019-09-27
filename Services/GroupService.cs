@@ -14,7 +14,7 @@ namespace TournamentManager.Backend.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _groups = database.GetCollection<Group>(settings.MembersCollectionName);
+            _groups = database.GetCollection<Group>(settings.GroupsCollectionName);
         }
 
         public async Task<List<Group>> Get() =>
@@ -26,7 +26,10 @@ namespace TournamentManager.Backend.Services
             return await _groups.Find(group => true).Project<int>(fields).ToListAsync();
         }
 
-        public async Task<Group> Get(int id) => await _groups.Find(group => group.Id == id).FirstOrDefaultAsync();
+        public async Task<Group> Get(string id)
+        {
+            return await _groups.Find(group => group.Id == id).FirstOrDefaultAsync();
+        }
 
         public Group Create(Group group)
         {
@@ -34,10 +37,10 @@ namespace TournamentManager.Backend.Services
             return group;
         }
 
-        public void Update(int id, Group groupIn) =>
+        public void Update(string id, Group groupIn) =>
             _groups.ReplaceOneAsync(group => group.Id == id, groupIn);
 
-        public void Remove(int id) =>
+        public void Remove(string id) =>
             _groups.DeleteOneAsync(group => group.Id == id);
     }
 }

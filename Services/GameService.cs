@@ -17,15 +17,15 @@ namespace TournamentManager.Backend.Services
             _games = database.GetCollection<Game>(settings.GamesCollectionName);
         }
 
-        public async Task<List<Game>> Get() =>
+        public async Task<ICollection<Game>> Get() =>
             await _games.Find(game => true).ToListAsync();
 
         public async Task<Game> Get(int id) => await _games.Find(game => game.Id == id).FirstOrDefaultAsync();
 
-        public async Task<List<Game>> GetGamesOfTeam(int teamId) =>
+        public async Task<List<Game>> GetGamesOfTeam(string teamId) =>
             await _games.Find(game => game.HomeTeamId == teamId || game.AwayTeamId == teamId).ToListAsync();
 
-        public async Task<List<Game>> GetGamesOfAGroup(List<int> teamIds) =>
+        public async Task<List<Game>> GetGamesOfAGroup(List<string> teamIds) =>
             await _games.Find(game => teamIds.Contains(game.HomeTeamId) || teamIds.Contains(game.AwayTeamId)).ToListAsync();
 
         public Game Create(Game game)

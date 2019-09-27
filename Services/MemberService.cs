@@ -20,21 +20,26 @@ namespace TournamentManager.Backend.Services
         public async Task<List<Member>> Get() =>
             await _members.Find(member => true).ToListAsync();
 
-        public async Task<Member> Get(int id) => await _members.Find(member => member.Id == id).FirstOrDefaultAsync();
+        public async Task<Member> Get(string id) => await _members.Find(member => member.Id == id).FirstOrDefaultAsync();
 
-        public async Task<List<Member>> GetMembersOfTeam(int teamId) =>
+        public async Task<List<Member>> GetMembersOfTeam(string teamId) =>
             await _members.Find(member => member.TeamId == teamId).ToListAsync();
 
+        public List<Member> AddMembers(List<Member> members)
+        {
+            _members.InsertMany(members);
+            return members;
+        }
         public Member Create(Member member)
         {
-            _members.InsertOneAsync(member);
+            _members.InsertOne(member);
             return member;
         }
 
-        public void Update(int id, Member memberIn) =>
+        public void Update(string id, Member memberIn) =>
             _members.ReplaceOneAsync(member => member.Id == id, memberIn);
 
-        public void Remove(int id) =>
+        public void Remove(string id) =>
             _members.DeleteOneAsync(member => member.Id == id);
     }
 }

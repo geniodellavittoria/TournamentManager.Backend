@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TournamentManager.Backend.Models;
 using TournamentManager.Backend.Services;
+using TournamentManager.Controllers.DTO;
 
 namespace TournamentManager.Backend.Controllers
 {
@@ -26,7 +27,7 @@ namespace TournamentManager.Backend.Controllers
 
         // GET api/members/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Member>> GetMember(int id)
+        public async Task<ActionResult<Member>> GetMember(string id)
         {
             var member = await _memberService.Get(id);
             if (member == null)
@@ -38,7 +39,7 @@ namespace TournamentManager.Backend.Controllers
 
         // GET api/members/5
         [HttpGet("team/{teamId}")]
-        public async Task<ActionResult<IEnumerable<Member>>> GetMemberOfaTeamAsync(int teamId)
+        public async Task<ActionResult<IEnumerable<Member>>> GetMemberOfaTeamAsync(string teamId)
         {
             var members = await _memberService.GetMembersOfTeam(teamId);
             if (members == null)
@@ -51,34 +52,51 @@ namespace TournamentManager.Backend.Controllers
 
         // POST api/members
         [HttpPost]
-        public CreatedAtActionResult AddMember(Member member)
+        public CreatedAtActionResult AddMember(CreateMemberDto dto)
         {
 
-            _memberService.Create(member);
-            return CreatedAtAction(nameof(GetMember), new
+            var createdMember = _memberService.Create(new Member
             {
-                id = member.Id
-            }, member);
+                Email = dto.Email,
+                Name = dto.Name,
+                Lastname = dto.Lastname,
+                TeamId = dto.TeamId
+            });
+            return CreatedAtAction(nameof(AddMember), new
+            {
+                id = createdMember.Id
+            }, createdMember);
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, Member teamÏn)
-        {
-            var team = _memberService.Get(id);
 
-            if (team == null)
+        // PUT api/members/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateMember(string id, [FromBody]UpdateMemberDto memberIn)
+        {
+            var member = _memberService.Get(id);
+
+            if (member == null)
             {
                 return NotFound();
             }
-            _memberService.Update(id, teamÏn);
+
+            var updatedMember = new Member
+            {
+                Id = id,
+                Name = memberIn.Name,
+                Lastname = memberIn.Lastname,
+                Email = memberIn.Email,
+                TeamId = memberIn.TeamId
+            };
+
+            _memberService.Update(id, updatedMember);
 
             return Ok();
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var team = _memberService.Get(id);
 

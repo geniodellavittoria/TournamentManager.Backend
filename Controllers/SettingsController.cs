@@ -17,7 +17,12 @@ namespace TournamentManager.Backend.Controllers
         public SettingsController(SettingsService settingsService)
         {
             this._settingsService = settingsService;
-            this._settingsService.Create(standardSettings);
+            InitSettings();
+        }
+
+        private void InitSettings()
+        {
+            _settingsService.Create(standardSettings);
         }
 
         // GET: api/settings

@@ -1,16 +1,11 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
-namespace TournamentManager.Backend.Models
+namespace TournamentManager.Controllers.DTO
 {
-    public class Member
+    public class CreateMemberDto
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
+        [Required]
         [JsonProperty("teamId")]
         public string TeamId { get; set; }
 

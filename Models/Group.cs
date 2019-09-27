@@ -1,17 +1,17 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace TournamentManager.Backend.Models
 {
     public class Group
     {
-        [Required]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-
-        [Required]
-        [JsonProperty("groupName")]
-        public string GroupName { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }

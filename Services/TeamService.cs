@@ -20,10 +20,10 @@ namespace TournamentManager.Backend.Services
         public async Task<List<Team>> Get() =>
             await _teams.Find(team => true).ToListAsync();
 
-        public async Task<Team> Get(int id) =>
+        public async Task<Team> Get(string id) =>
             await _teams.Find<Team>(team => team.Id == id).FirstOrDefaultAsync();
 
-        public async Task<List<Team>> GetTeamsOfGroup(int groupId) =>
+        public async Task<List<Team>> GetTeamsOfGroup(string groupId) =>
             await _teams.Find(team => team.GroupId == groupId).ToListAsync();
 
         public async Task<Team> Create(Team team)
@@ -32,13 +32,13 @@ namespace TournamentManager.Backend.Services
             return team;
         }
 
-        public void Update(int id, Team teamIn) =>
-            _teams.ReplaceOneAsync(team => team.Id == id, teamIn);
+        public void Update(Team teamIn) =>
+            _teams.ReplaceOneAsync(team => team.Id == teamIn.Id, teamIn);
 
         public void Remove(Team teamIn) =>
             _teams.DeleteOneAsync(team => team.Id == teamIn.Id);
 
-        public void Remove(int id) =>
+        public void Remove(string id) =>
             _teams.DeleteOneAsync(team => team.Id == id);
     }
 }

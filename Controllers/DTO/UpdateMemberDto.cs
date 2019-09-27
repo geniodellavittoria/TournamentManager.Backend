@@ -4,20 +4,19 @@ using Newtonsoft.Json;
 
 namespace TournamentManager.Backend.Models
 {
-    public class Team
+    public class UpdateMemberDto
     {
-        [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        [JsonProperty("teamId")]
+        public string TeamId { get; set; }
+
+        [JsonProperty("lastname")]
+        public string Lastname { get; set; }
 
         [JsonProperty("name")]
-        [BsonElement("name")]
         public string Name { get; set; }
 
-        [JsonProperty("isPaid")]
-        public bool IsPaid { get; set; }
-
-        [JsonProperty("groupId")]
-        public string GroupId { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
     }
 }

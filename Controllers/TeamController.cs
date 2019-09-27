@@ -12,11 +12,15 @@ namespace TournamentManager.Backend.Controllers
     {
         private readonly TeamService _teamService;
         private readonly MemberService _memberService;
+        private readonly GroupService _groupService;
 
-        public TeamsController(TeamService teamService, MemberService memberService)
+        public TeamsController(TeamService teamService,
+            MemberService memberService,
+            GroupService groupService)
         {
             this._teamService = teamService;
             this._memberService = memberService;
+            this._groupService = groupService;
         }
 
         // GET api/teams
@@ -25,18 +29,21 @@ namespace TournamentManager.Backend.Controllers
         {
             var members = await _memberService.Get();
             var teams = await _teamService.Get();
+            var groups = await _groupService.Get();
 
             var teamWithMembers = new List<TeamDto>();
 
             foreach (Models.Team team in teams)
             {
                 var teamMembers = members.FindAll(x => x.TeamId == team.Id);
+                var group = groups.Find(x => x.Id == team.GroupId);
                 teamWithMembers.Add(new TeamDto
                 {
                     Id = team.Id,
                     Name = team.Name,
                     IsPaid = team.IsPaid,
-                    Members = teamMembers
+                    Members = teamMembers,
+                    Group = group
                 });
             }
 
@@ -46,7 +53,7 @@ namespace TournamentManager.Backend.Controllers
 
         // GET api/teams/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TeamDto>> GetTeam(int id)
+        public async Task<ActionResult<TeamDto>> GetTeam(string id)
         {
             var team = await _teamService.Get(id);
 
@@ -54,20 +61,21 @@ namespace TournamentManager.Backend.Controllers
             {
                 return NotFound();
             }
-
+            var group = await _groupService.Get(team.GroupId);
             var members = await _memberService.GetMembersOfTeam(id);
             return Ok(new TeamDto
             {
                 Id = team.Id,
                 IsPaid = team.IsPaid,
                 Name = team.Name,
+                Group = group,
                 Members = members
             });
         }
 
-        // GET api/teams/group/{id}
+        // GET api/teams/group/5
         [HttpGet("group/{id}")]
-        public async Task<ActionResult<List<TeamDto>>> GetTeamsOfGroup(int groupId)
+        public async Task<ActionResult<List<TeamDto>>> GetTeamsOfGroup(string groupId)
         {
             List<Team> teams = null;
             List<Member> members = null;
@@ -94,56 +102,50 @@ namespace TournamentManager.Backend.Controllers
 
         }
 
-
         // POST api/teams
         [HttpPost]
-        public async Task<CreatedAtActionResult> AddTeamAsync(TeamDto dto)
+        public async Task<CreatedAtActionResult> AddTeamAsync(CreateTeamDto dto)
         {
             Models.Team team = new Models.Team
             {
                 IsPaid = dto.IsPaid,
+                GroupId = dto.GroupId,
                 Name = dto.Name
             };
-            await _teamService.Create(team);
+            var createdTeam = await _teamService.Create(team);
 
-            List<Member> members = dto.Members;
-            members.ForEach(x =>
+            return CreatedAtAction(nameof(AddTeamAsync), new
             {
-                var newMember = new Member
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Lastname = x.Lastname,
-                    Email = x.Email,
-                    TeamId = team.Id
-                };
-                _memberService.Create(newMember);
-            });
-
-            return CreatedAtAction(nameof(GetTeam), new
-            {
-                id = team.Id
+                id = createdTeam.Id
             }, dto);
         }
 
-        // PUT api/<controller>/5
+        // PUT api/teams/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Models.Team teamÏn)
+        public async Task<IActionResult> UpdateTeamAsync(string id, [FromBody] UpdateTeamDto teamIn)
         {
-            var team = _teamService.Get(id);
+            var team = await _teamService.Get(id);
 
             if (team == null)
             {
                 return NotFound();
             }
-            _teamService.Update(id, teamÏn);
 
-            return Ok();
+            var newTeam = new Team
+            {
+                Id = id,
+                Name = teamIn.Name,
+                GroupId = teamIn.GroupId,
+                IsPaid = teamIn.IsPaid
+            };
+
+            _teamService.Update(newTeam);
+            return NoContent();
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var team = _teamService.Get(id);
 
