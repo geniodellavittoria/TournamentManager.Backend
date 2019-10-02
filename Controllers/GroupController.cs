@@ -27,6 +27,13 @@ namespace TournamentManager.Backend.Controllers
             return await _groupService.Get();
         }
 
+        // GET api/groups
+        [HttpGet("{id}")]
+        public async Task<Group> GetGroup(string id)
+        {
+            return await _groupService.Get(id);
+        }
+
         // POST api/groups
         [HttpPost]
         public CreatedAtActionResult AddGroup(CreateGroupDto group)

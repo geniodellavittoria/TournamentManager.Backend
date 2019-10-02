@@ -7,38 +7,27 @@ namespace TournamentManager.Backend.Services
 {
     public class GameService
     {
-        private readonly IMongoCollection<Game> _games;
+        private readonly IMongoCollection<GroupGames> _games;
 
         public GameService(ITournamentManagerDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _games = database.GetCollection<Game>(settings.GamesCollectionName);
+            _games = database.GetCollection<GroupGames>(settings.GamesCollectionName);
         }
 
-        public async Task<ICollection<Game>> Get() =>
-            await _games.Find(game => true).ToListAsync();
+        public async Task<ICollection<GroupGames>> Get() =>
+            await _games.Find(groupGames => true).ToListAsync();
 
-        public async Task<Game> Get(int id) => await _games.Find(game => game.Id == id).FirstOrDefaultAsync();
+        public async Task<List<GroupGames>> GetGamesOfAGroup(string groupId) =>
+            await _games.Find(groupGame => groupGame.GroupId == groupId).ToListAsync();
 
-        public async Task<List<Game>> GetGamesOfTeam(string teamId) =>
-            await _games.Find(game => game.HomeTeamId == teamId || game.AwayTeamId == teamId).ToListAsync();
-
-        public async Task<List<Game>> GetGamesOfAGroup(List<string> teamIds) =>
-            await _games.Find(game => teamIds.Contains(game.HomeTeamId) || teamIds.Contains(game.AwayTeamId)).ToListAsync();
-
-        public Game Create(Game game)
+        public GroupGames Create(GroupGames groupGames)
         {
-            _games.InsertOneAsync(game);
-            return game;
+            _games.InsertOneAsync(groupGames);
+            return groupGames;
         }
-
-        public void Update(int id, Game gameIn) =>
-            _games.ReplaceOneAsync(game => game.Id == id, gameIn);
-
-        public void Remove(int id) =>
-            _games.DeleteOneAsync(game => game.Id == id);
     }
 }
 

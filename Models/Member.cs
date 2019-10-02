@@ -8,7 +8,6 @@ namespace TournamentManager.Backend.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        [JsonProperty("id")]
         public string Id { get; set; }
 
         [JsonProperty("teamId")]

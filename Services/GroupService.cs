@@ -20,12 +20,6 @@ namespace TournamentManager.Backend.Services
         public async Task<List<Group>> Get() =>
             await _groups.Find(group => true).ToListAsync();
 
-        public async Task<List<int>> GetGroupIds()
-        {
-            var fields = Builders<Group>.Projection.Include(p => p.Id);
-            return await _groups.Find(group => true).Project<int>(fields).ToListAsync();
-        }
-
         public async Task<Group> Get(string id)
         {
             return await _groups.Find(group => group.Id == id).FirstOrDefaultAsync();
