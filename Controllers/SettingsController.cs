@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TournamentManager.Backend.Models;
 using TournamentManager.Backend.Services;
 
@@ -10,19 +10,11 @@ namespace TournamentManager.Backend.Controllers
     [Route("api/settings")]
     public class SettingsController : Controller
     {
-        private Settings standardSettings = new Settings { GroupSize = 6, TeamSize = 2 };
-
         private readonly SettingsService _settingsService;
 
         public SettingsController(SettingsService settingsService)
         {
             this._settingsService = settingsService;
-            InitSettings();
-        }
-
-        private void InitSettings()
-        {
-            _settingsService.Create(standardSettings);
         }
 
         // GET: api/settings

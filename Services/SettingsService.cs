@@ -1,5 +1,5 @@
-﻿using MongoDB.Driver;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MongoDB.Driver;
 using TournamentManager.Backend.Models;
 
 namespace TournamentManager.Backend.Services

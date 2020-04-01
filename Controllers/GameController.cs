@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TournamentManager.Backend.Models;
 using TournamentManager.Backend.Services;
 
@@ -57,27 +57,14 @@ namespace TournamentManager.Backend.Controllers
                 var teams = teamlist.Where(x => x.GroupId == group.GroupId).ToList();
                 if (!teams.Any())
                     continue;
-                group.Games = createGamesForGroup(group.GroupId, settings, teams);
-                this._gameService.Create(group);
-            };
+                group.Games = CreateGamesForGroup(group.GroupId, settings, teams);
+                _gameService.Create(group);
+            }
 
             return games;
         }
 
-        // PUT api/games
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateScoresAsync(string groupId, [FromBody]List<Game> games)
-        {
-            return Ok();
-
-        }
-
-        private static string GetTeamName(string teamId, List<Models.Team> teams)
-        {
-            return teams.Where(team => team.Id == teamId).Select(team => team.Name).FirstOrDefault();
-        }
-
-        private List<Game> createGamesForGroup(string groupId, Settings settings, List<Team> teamList)
+        private List<Game> CreateGamesForGroup(string groupId, Settings settings, List<Team> teamList)
         {
             var games = new List<Game>();
             var teams = teamList;
@@ -94,7 +81,6 @@ namespace TournamentManager.Backend.Controllers
                     IsPaid = false,
                     Name = ""
                 });
-                ;
             }
 
             teams.AddRange(teams); // Copy all the elements.
