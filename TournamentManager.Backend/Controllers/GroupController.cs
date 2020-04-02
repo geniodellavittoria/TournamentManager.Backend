@@ -12,10 +12,10 @@ namespace TournamentManager.Backend.Controllers
     public class GroupController : Controller
     {
 
-        private readonly GroupService _groupService;
+        private readonly GroupRepository _groupService;
 
         public GroupController(
-            GroupService groupService)
+            GroupRepository groupService)
         {
             _groupService = groupService;
         }

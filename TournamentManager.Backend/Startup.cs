@@ -28,11 +28,11 @@ namespace TournamentManager.Backend
             services.AddSingleton<ITournamentManagerDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<TournamentManagerDatabaseSettings>>().Value);
 
-            services.AddSingleton<TeamService>();
-            services.AddSingleton<MemberService>();
-            services.AddSingleton<SettingsService>();
-            services.AddSingleton<GroupService>();
-            services.AddSingleton<GameService>();
+            services.AddSingleton<TeamRepository>();
+            services.AddSingleton<MemberRepository>();
+            services.AddSingleton<SettingsRepository>();
+            services.AddSingleton<GroupRepository>();
+            services.AddSingleton<GameRepository>();
 
             services.AddMvc()
                 .AddJsonOptions(options => options.UseMemberCasing())

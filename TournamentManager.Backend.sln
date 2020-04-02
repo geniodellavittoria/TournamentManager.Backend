@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentManager.Backend", "TournamentManager.Backend.csproj", "{F8843341-0DC3-4745-971B-8250D99DC67B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentManager.Backend.Tests", "TournamentManager.Backend.Tests\TournamentManager.Backend.Tests.csproj", "{4063115D-7768-4C7E-9DE0-DF14AA3E6929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentManager.Backend.Tests", "TournamentManager.Backend.Tests\TournamentManager.Backend.Tests.csproj", "{4063115D-7768-4C7E-9DE0-DF14AA3E6929}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{31590A56-A74F-438B-B695-EFA026EF2746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentManager.Backend", "TournamentManager.Backend\TournamentManager.Backend.csproj", "{B40F7F2F-B00D-4406-A1D4-B7AF10DDDA16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,20 +13,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F8843341-0DC3-4745-971B-8250D99DC67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8843341-0DC3-4745-971B-8250D99DC67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8843341-0DC3-4745-971B-8250D99DC67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8843341-0DC3-4745-971B-8250D99DC67B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4063115D-7768-4C7E-9DE0-DF14AA3E6929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4063115D-7768-4C7E-9DE0-DF14AA3E6929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4063115D-7768-4C7E-9DE0-DF14AA3E6929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4063115D-7768-4C7E-9DE0-DF14AA3E6929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B40F7F2F-B00D-4406-A1D4-B7AF10DDDA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B40F7F2F-B00D-4406-A1D4-B7AF10DDDA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B40F7F2F-B00D-4406-A1D4-B7AF10DDDA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B40F7F2F-B00D-4406-A1D4-B7AF10DDDA16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4063115D-7768-4C7E-9DE0-DF14AA3E6929} = {31590A56-A74F-438B-B695-EFA026EF2746}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CED6CB2A-14B6-429A-B5AD-55876C811F39}

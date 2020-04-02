@@ -10,9 +10,9 @@ namespace TournamentManager.Backend.Controllers
     [Route("api/settings")]
     public class SettingsController : Controller
     {
-        private readonly SettingsService _settingsService;
+        private readonly SettingsRepository _settingsService;
 
-        public SettingsController(SettingsService settingsService)
+        public SettingsController(SettingsRepository settingsService)
         {
             this._settingsService = settingsService;
         }

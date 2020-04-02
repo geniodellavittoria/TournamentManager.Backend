@@ -12,16 +12,16 @@ namespace TournamentManager.Backend.Controllers
     [Route("api/games")]
     public class GameController : Controller
     {
-        private readonly GameService _gameService;
-        private readonly TeamService _teamService;
-        private readonly GroupService _groupService;
-        private readonly SettingsService _settingsService;
+        private readonly GameRepository _gameService;
+        private readonly TeamRepository _teamService;
+        private readonly GroupRepository _groupService;
+        private readonly SettingsRepository _settingsService;
 
         public GameController(
-            GameService gameService,
-            TeamService teamService,
-            SettingsService settingsService,
-            GroupService groupService)
+            GameRepository gameService,
+            TeamRepository teamService,
+            SettingsRepository settingsService,
+            GroupRepository groupService)
         {
             this._gameService = gameService;
             this._teamService = teamService;

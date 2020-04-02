@@ -10,13 +10,13 @@ namespace TournamentManager.Backend.Controllers
     [Route("api/teams")]
     public class TeamsController : Controller
     {
-        private readonly TeamService _teamService;
-        private readonly MemberService _memberService;
-        private readonly GroupService _groupService;
+        private readonly TeamRepository _teamService;
+        private readonly MemberRepository _memberService;
+        private readonly GroupRepository _groupService;
 
-        public TeamsController(TeamService teamService,
-            MemberService memberService,
-            GroupService groupService)
+        public TeamsController(TeamRepository teamService,
+            MemberRepository memberService,
+            GroupRepository groupService)
         {
             this._teamService = teamService;
             this._memberService = memberService;

@@ -11,9 +11,9 @@ namespace TournamentManager.Backend.Controllers
     [Route("api/members")]
     public class MemberController : Controller
     {
-        private readonly MemberService _memberService;
+        private readonly MemberRepository _memberService;
 
-        public MemberController(MemberService memberService)
+        public MemberController(MemberRepository memberService)
         {
             _memberService = memberService;
         }
