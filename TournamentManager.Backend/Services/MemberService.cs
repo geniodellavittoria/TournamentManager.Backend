@@ -1,6 +1,6 @@
-﻿using MongoDB.Driver;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 using TournamentManager.Backend.Models;
 
 namespace TournamentManager.Backend.Services
@@ -36,8 +36,8 @@ namespace TournamentManager.Backend.Services
             return member;
         }
 
-        public void Update(string id, Member memberIn) =>
-            _members.ReplaceOneAsync(member => member.Id == id, memberIn);
+        public async Task<ReplaceOneResult> Update(string id, Member memberIn) =>
+            await _members.ReplaceOneAsync(member => member.Id == id, memberIn);
 
         public void Remove(string id) =>
             _members.DeleteOneAsync(member => member.Id == id);

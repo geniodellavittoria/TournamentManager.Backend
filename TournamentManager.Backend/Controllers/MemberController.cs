@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TournamentManager.Backend.Models;
 using TournamentManager.Backend.Services;
 using TournamentManager.Controllers.DTO;
@@ -73,7 +73,7 @@ namespace TournamentManager.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMember(string id, [FromBody]UpdateMemberDto memberIn)
         {
-            var member = _memberService.Get(id);
+            var member = await _memberService.Get(id);
 
             if (member == null)
             {
@@ -89,9 +89,15 @@ namespace TournamentManager.Backend.Controllers
                 TeamId = memberIn.TeamId
             };
 
-            _memberService.Update(id, updatedMember);
-
-            return Ok();
+            var result = await _memberService.Update(id, updatedMember);
+            if (result.IsAcknowledged)
+            {
+                return Ok();
+            }
+            else
+            {
+                return Conflict();
+            }
         }
 
         // DELETE api/<controller>/5
