@@ -33,6 +33,7 @@ namespace TournamentManager.Backend
             services.AddSingleton<SettingsRepository>();
             services.AddSingleton<GroupRepository>();
             services.AddSingleton<GameRepository>();
+            services.AddTransient<IGameService, GameService>();
 
             services.AddMvc()
                 .AddJsonOptions(options => options.UseMemberCasing())

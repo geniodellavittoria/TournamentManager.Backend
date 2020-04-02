@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,21 +11,24 @@ namespace TournamentManager.Backend.Controllers
     [Route("api/games")]
     public class GameController : Controller
     {
-        private readonly GameRepository _gameService;
-        private readonly TeamRepository _teamService;
-        private readonly GroupRepository _groupService;
-        private readonly SettingsRepository _settingsService;
+        private readonly GameRepository _gameRepo;
+        private readonly TeamRepository _teamRepo;
+        private readonly GroupRepository _groupRepo;
+        private readonly SettingsRepository _settingsRepo;
+        private readonly IGameService gameService;
 
         public GameController(
-            GameRepository gameService,
-            TeamRepository teamService,
-            SettingsRepository settingsService,
-            GroupRepository groupService)
+            GameRepository gameRepo,
+            TeamRepository teamRepo,
+            SettingsRepository settingsRepo,
+            GroupRepository groupRepo,
+            IGameService gameService)
         {
-            this._gameService = gameService;
-            this._teamService = teamService;
-            this._groupService = groupService;
-            this._settingsService = settingsService;
+            this._gameRepo = gameRepo;
+            this._teamRepo = teamRepo;
+            this._groupRepo = groupRepo;
+            this._settingsRepo = settingsRepo;
+            this.gameService = gameService;
         }
 
         // GET api/games
@@ -34,10 +36,10 @@ namespace TournamentManager.Backend.Controllers
         public async Task<IEnumerable<GroupGames>> GetGamesAsync()
         {
 
-            var teamlist = await this._teamService.GetTeamsWithGroup();
-            var games = await this._gameService.Get();
-            var groups = await this._groupService.Get();
-            var settings = await this._settingsService.Get();
+            var teamlist = await this._teamRepo.GetTeamsWithGroup();
+            var games = await this._gameRepo.Get();
+            var groups = await this._groupRepo.Get();
+            var settings = await this._settingsRepo.Get();
 
             groups.ForEach(group =>
              {
@@ -57,72 +59,11 @@ namespace TournamentManager.Backend.Controllers
                 var teams = teamlist.Where(x => x.GroupId == group.GroupId).ToList();
                 if (!teams.Any())
                     continue;
-                group.Games = CreateGamesForGroup(group.GroupId, settings, teams);
-                _gameService.Create(group);
+                group.Games = gameService.CreateGamesForGroup(group.GroupId, settings, teams);
+                _gameRepo.Create(group);
             }
 
             return games;
         }
-
-        private List<Game> CreateGamesForGroup(string groupId, Settings settings, List<Team> teamList)
-        {
-            var games = new List<Game>();
-            var teams = teamList;
-
-            int numRounds = (settings.GroupSize - 1);
-            int halfSize = settings.GroupSize / 2;
-
-            teams = teams.Where(x => x.GroupId == groupId).ToList();
-            if (teams.Count % 2 != 0)
-            {
-                teams.Add(new Team
-                {
-                    GroupId = groupId,
-                    IsPaid = false,
-                    Name = ""
-                });
-            }
-
-            teams.AddRange(teams); // Copy all the elements.
-            teams.RemoveAt(0); // To exclude the first team.
-
-            int teamsSize = teams.Count;
-
-            for (int round = 0; round < numRounds; round++)
-            {
-                Console.WriteLine("Round {0}", (round + 1));
-
-                int teamIdx = round % teamsSize;
-
-                Console.WriteLine("{0} vs {1}", teams[teamIdx], teamList[0]);
-                games.Add(new Game
-                {
-                    HomeTeamName = teams[teamIdx].Name,
-                    HomeTeamId = teams[teamIdx].Id,
-                    AwayTeamName = teams[0].Name,
-                    AwayTeamId = teams[0].Id
-                });
-
-                for (int idx = 1; idx < halfSize; idx++)
-                {
-                    int firstTeam = (round + idx) % teamsSize;
-                    int secondTeam = (round + teamsSize - idx) % teamsSize;
-                    Console.WriteLine("{0} vs {1}", teams[firstTeam], teams[secondTeam]);
-                    games.Add(new Game
-                    {
-                        HomeTeamId = teams[firstTeam].Id,
-                        HomeTeamName = teams[firstTeam].Name,
-                        AwayTeamId = teams[secondTeam].Id,
-                        AwayTeamName = teams[secondTeam].Name
-                    });
-                }
-            }
-
-            return games;
-        }
-
-
-
-
     }
 }
