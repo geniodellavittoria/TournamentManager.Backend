@@ -27,7 +27,7 @@ namespace TournamentManager.Backend.Controllers
         [HttpGet]
         public async Task<IEnumerable<TeamDto>> GetTeamsAsync()
         {
-            var members = await _memberService.Get();
+            var members = await _memberService.GetAsync();
             var teams = await _teamService.Get();
             var groups = await _groupService.Get();
 
@@ -62,7 +62,7 @@ namespace TournamentManager.Backend.Controllers
                 return NotFound();
             }
             var group = await _groupService.Get(team.GroupId);
-            var members = await _memberService.GetMembersOfTeam(id);
+            var members = await _memberService.GetMembersOfTeamAsync(id);
             return Ok(new TeamDto
             {
                 Id = team.Id,
@@ -80,8 +80,8 @@ namespace TournamentManager.Backend.Controllers
             List<Team> teams = null;
             List<Member> members = null;
 
-            teams = await _teamService.GetTeamsOfGroup(groupId);
-            members = await _memberService.Get();
+            teams = await _teamService.GetTeamsOfGroupAsync(groupId);
+            members = await _memberService.GetAsync();
 
             if (teams == null)
             {
@@ -112,7 +112,7 @@ namespace TournamentManager.Backend.Controllers
                 GroupId = dto.GroupId,
                 Name = dto.Name
             };
-            var createdTeam = await _teamService.Create(team);
+            var createdTeam = await _teamService.CreateAsync(team);
 
             return CreatedAtAction(nameof(AddTeamAsync), new
             {

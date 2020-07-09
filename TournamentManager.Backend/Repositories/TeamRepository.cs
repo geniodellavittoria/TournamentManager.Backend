@@ -17,21 +17,21 @@ namespace TournamentManager.Backend.Services
             _teams = database.GetCollection<Team>(settings.TeamsCollectionName);
         }
 
-        public async Task<List<Team>> Get() =>
-            await _teams.Find(team => true).ToListAsync();
+        public Task<List<Team>> Get() =>
+            _teams.Find(team => true).ToListAsync();
 
-        public async Task<Team> Get(string id) =>
-            await _teams.Find<Team>(team => team.Id == id).FirstOrDefaultAsync();
+        public Task<Team> Get(string id) =>
+            _teams.Find<Team>(team => team.Id == id).FirstOrDefaultAsync();
 
-        public async Task<List<Team>> GetTeamsOfGroup(string groupId) =>
-            await _teams.Find(team => team.GroupId == groupId).ToListAsync();
+        public Task<List<Team>> GetTeamsOfGroupAsync(string groupId) =>
+            _teams.Find(team => team.GroupId == groupId).ToListAsync();
 
-        public async Task<List<Team>> GetTeamsWithGroup() =>
-            await _teams.Find(team => team.GroupId != null || team.GroupId != "").ToListAsync();
+        public Task<List<Team>> GetTeamsWithGroupAsync() =>
+            _teams.Find(team => team.GroupId != null || team.GroupId != "").ToListAsync();
 
-        public async Task<Team> Create(Team team)
+        public async Task<Team> CreateAsync(Team team)
         {
-            await _teams.InsertOneAsync(team);
+            await _teams.InsertOneAsync(team).ConfigureAwait(false);
             return team;
         }
 

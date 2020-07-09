@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using MongoDB.Driver;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Driver;
 using TournamentManager.Backend.Models;
 
 namespace TournamentManager.Backend.Services
@@ -17,13 +17,13 @@ namespace TournamentManager.Backend.Services
             _members = database.GetCollection<Member>(settings.MembersCollectionName);
         }
 
-        public async Task<List<Member>> Get() =>
-            await _members.Find(member => true).ToListAsync();
+        public Task<List<Member>> GetAsync() =>
+            _members.Find(member => true).ToListAsync();
 
-        public async Task<Member> Get(string id) => await _members.Find(member => member.Id == id).FirstOrDefaultAsync();
+        public Task<Member> GetAsync(string id) => _members.Find(member => member.Id == id).FirstOrDefaultAsync();
 
-        public async Task<List<Member>> GetMembersOfTeam(string teamId) =>
-            await _members.Find(member => member.TeamId == teamId).ToListAsync();
+        public Task<List<Member>> GetMembersOfTeamAsync(string teamId) =>
+            _members.Find(member => member.TeamId == teamId).ToListAsync();
 
         public List<Member> AddMembers(List<Member> members)
         {
@@ -36,8 +36,8 @@ namespace TournamentManager.Backend.Services
             return member;
         }
 
-        public async Task<ReplaceOneResult> Update(string id, Member memberIn) =>
-            await _members.ReplaceOneAsync(member => member.Id == id, memberIn);
+        public Task<ReplaceOneResult> UpdateAsync(string id, Member memberIn) =>
+            _members.ReplaceOneAsync(member => member.Id == id, memberIn);
 
         public void Remove(string id) =>
             _members.DeleteOneAsync(member => member.Id == id);

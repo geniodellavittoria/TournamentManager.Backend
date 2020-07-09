@@ -22,14 +22,14 @@ namespace TournamentManager.Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Member>>> GetMembers()
         {
-            return Ok(await _memberService.Get());
+            return Ok(await _memberService.GetAsync());
         }
 
         // GET api/members/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Member>> GetMember(string id)
         {
-            var member = await _memberService.Get(id);
+            var member = await _memberService.GetAsync(id);
             if (member == null)
             {
                 return NotFound();
@@ -41,7 +41,7 @@ namespace TournamentManager.Backend.Controllers
         [HttpGet("team/{teamId}")]
         public async Task<ActionResult<IEnumerable<Member>>> GetMemberOfaTeamAsync(string teamId)
         {
-            var members = await _memberService.GetMembersOfTeam(teamId);
+            var members = await _memberService.GetMembersOfTeamAsync(teamId);
             if (members == null)
             {
                 return NotFound();
@@ -73,7 +73,7 @@ namespace TournamentManager.Backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMember(string id, [FromBody]UpdateMemberDto memberIn)
         {
-            var member = await _memberService.Get(id);
+            var member = await _memberService.GetAsync(id);
 
             if (member == null)
             {
@@ -89,7 +89,7 @@ namespace TournamentManager.Backend.Controllers
                 TeamId = memberIn.TeamId
             };
 
-            var result = await _memberService.Update(id, updatedMember);
+            var result = await _memberService.UpdateAsync(id, updatedMember);
             if (result.IsAcknowledged)
             {
                 return Ok();
@@ -104,7 +104,7 @@ namespace TournamentManager.Backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var team = _memberService.Get(id);
+            var team = _memberService.GetAsync(id);
 
             if (team == null)
             {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Source\\GithubRepos\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {}
+    "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Source\\GithubRepos\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {
+    "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\GithubRepos\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
+        "projectUniqueName": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
         "projectName": "TournamentManager.Backend.Tests",
-        "projectPath": "C:\\Source\\GithubRepos\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
+        "projectPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
         "packagesPath": "C:\\Users\\ch-tbo\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\GithubRepos\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\obj\\",
+        "outputPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,7 +30,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj": {
+                "projectPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -69,12 +73,105 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj",
+        "projectName": "TournamentManager.Backend",
+        "projectPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj",
+        "packagesPath": "C:\\Users\\ch-tbo\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ch-tbo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://birs.pkgs.visualstudio.com/_packaging/CIRRUS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.2, )"
+            },
+            "SonarAnalyzer.CSharp": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.6.0.16497, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

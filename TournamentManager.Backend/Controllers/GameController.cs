@@ -36,7 +36,7 @@ namespace TournamentManager.Backend.Controllers
         public async Task<IEnumerable<GroupGames>> GetGamesAsync()
         {
 
-            var teamlist = await this._teamRepo.GetTeamsWithGroup();
+            var teamlist = await this._teamRepo.GetTeamsWithGroupAsync();
             var games = await this._gameRepo.Get();
             var groups = await this._groupRepo.Get();
             var settings = await this._settingsRepo.Get();
