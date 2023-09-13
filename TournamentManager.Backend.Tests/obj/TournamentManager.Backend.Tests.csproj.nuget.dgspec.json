@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {}
+    "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {
+    "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
+        "projectUniqueName": "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
         "projectName": "TournamentManager.Backend.Tests",
-        "projectPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
+        "projectPath": "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\TournamentManager.Backend.Tests.csproj",
         "packagesPath": "C:\\Users\\ch-tbo\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\obj\\",
+        "outputPath": "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend.Tests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\ch-tbo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -25,14 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://birs.pkgs.visualstudio.com/_packaging/CIRRUS/nuget/v3/index.json": {}
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj": {
-                "projectPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj"
+              "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj": {
+                "projectPath": "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj"
               }
             }
           }
@@ -45,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MSTest.TestAdapter": {
               "target": "Package",
@@ -69,40 +67,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj": {
+    "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj",
+        "projectUniqueName": "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj",
         "projectName": "TournamentManager.Backend",
-        "projectPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj",
+        "projectPath": "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend\\TournamentManager.Backend.csproj",
         "packagesPath": "C:\\Users\\ch-tbo\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\Repos\\HSLU\\TournamentManager.Backend\\TournamentManager.Backend\\obj\\",
+        "outputPath": "C:\\Temp\\TournamentManager.Backend\\TournamentManager.Backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\ch-tbo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -112,11 +99,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://birs.pkgs.visualstudio.com/_packaging/CIRRUS/nuget/v3/index.json": {}
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
             "projectReferences": {}
           }
         },
@@ -128,6 +115,7 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
           "dependencies": {
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
@@ -167,11 +155,12 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
